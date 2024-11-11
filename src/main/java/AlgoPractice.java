@@ -1,3 +1,4 @@
+import javax.swing.tree.TreeNode;
 import java.util.*;
 
 // binary tree
@@ -26,17 +27,109 @@ public class AlgoPractice {
     public static void main(String[] args) {
         Tree root = new Tree(1);
         root.left = new Tree(7);
-        root.left.left = new Tree(7);
-        root.left.right = new Tree(-8);
+        root.left.left = new Tree(3);
+        root.left.right = new Tree(6);
+        root.right = new Tree(5);
+        root.right.left = new Tree(2);
+        root.right.right = new Tree(4);
 
-        String[] result = printBinaryTree(null);
+        // String[] result = printBinaryTree(null);
+        //        for (String s: result) {
+        //            System.out.print(s + " ");
+        //        }
 
-        for (String s: result) {
+        // print(tree) => [1, 7, 5, 3, 6, 2, 4]
+        Integer[] result = print(root);
+        for (Integer s: result) {
             System.out.print(s + " ");
         }
-
     }
 
+    // postorder, can do without a stack
+    public static Integer[] print(Tree<Integer> tr) {
+        // assume tr not null
+        Stack<Tree<Integer>> st = new Stack<>();
+        ArrayList<Integer> al = new ArrayList<>();
+
+        st.push(tr);
+
+        while (!st.isEmpty()) {
+            Tree<Integer> top = st.peek();
+            if (top != null) {
+                System.out.println("peek " + top.value);
+                // if top is a leaf dont push null into stack
+                if (top.right != null) {
+                    System.out.println("push " + top.right.value);
+                    st.push(top.right);
+                }
+
+                if (top.left != null) {
+                    System.out.println("push " + top.left.value);
+                    st.push(top.left);
+                }
+
+                if (top.right == null && top.left == null) {
+                    System.out.println("print " + top.value);
+                    al.add(top.value);
+                    System.out.println("pop " + top.value);
+                    st.pop();
+                }
+            }
+
+        }
+
+        return al.toArray(al.toArray(new Integer[0]));
+    }
+
+    // inorder, can do without a stack
+    public static Integer[] printInorder(Tree<Integer> tr) {
+        // assume tr not null
+        Stack<Tree<Integer>> st = new Stack<>();
+        ArrayList<Integer> al = new ArrayList<>();
+
+        return al.toArray(al.toArray(new Integer[0]));
+    }
+
+    // preorder, can do without a stack
+    public static Integer[] printPreorder(Tree<Integer> tr) {
+        // assume tr not null
+        Stack<Tree<Integer>> st = new Stack<>();
+        ArrayList<Integer> al = new ArrayList<>();
+
+        st.push(tr);
+        while (!st.isEmpty()) {
+            Tree<Integer> top = st.pop();
+
+            if (top != null) {
+                al.add(top.value);
+                st.push(top.right);
+                st.push(top.left);
+            }
+
+        }
+
+        return al.toArray(new Integer[0]);
+    }
+
+    public static Integer[] printBFS(Tree<Integer> tr) {
+        // assume tr not null
+        Queue<Tree<Integer>> q = new LinkedList<>();
+        ArrayList<Integer> al = new ArrayList<>();
+        q.offer(tr);
+
+        while (!q.isEmpty()) {
+            Tree<Integer> first = q.poll();
+
+            if (first != null) {
+                al.add(first.value);
+
+                q.offer(first.left);
+                q.offer(first.right);
+            }
+        }
+
+        return al.toArray(al.toArray(new Integer[0]));
+    }
 
     // print binary tree by level and seperated by a | operator
     // has placeholder for null nodes
@@ -92,6 +185,7 @@ public class AlgoPractice {
     }
 
     // convert any dynamic array to static array
+    // alternatively al.toArray(new Integer[0])
     public Integer[] arrayListToStaticArray(List<Integer> result) {
         return result.toArray(Integer[]::new);
     }
