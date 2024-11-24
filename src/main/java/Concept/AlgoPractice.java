@@ -1,4 +1,4 @@
-import java.util.*;
+package Concept;
 
 public class AlgoPractice {
 

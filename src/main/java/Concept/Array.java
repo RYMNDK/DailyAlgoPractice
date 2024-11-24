@@ -1,3 +1,5 @@
+package Concept;
+
 import java.util.List;
 
 public class Array {
@@ -57,4 +59,24 @@ public class Array {
     }
 
     // insertion sort
+
+    // First element occurring k times in an array (hashmap)
+
+    // Nearly sorted array (heap)
+
+    // dutch flag problem (3 pointer)
+
+    // Min number of swaps
+    // 2 pointer 2 pass count 1s and 0s
+
+    // Assign difficulty questions (candy)
+    // B[i + 1] > B[i] if A[i + 1] > A[i]
+    // 2 pass
+
+    // rotate array
+    // rotate array in k c hunks
+    // rotate k in place
+
+    // longest palindromic substring
 }
+

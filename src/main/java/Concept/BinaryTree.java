@@ -1,21 +1,13 @@
+package Concept;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-// binary tree
-class Tree<T> {
-    Tree(T x) {
-        value = x;
-    }
-    T value;
-    Tree<T> left;
-    Tree<T> right;
-}
-
 public class BinaryTree {
 
-    public static int count(Tree<Integer> root) {
+    public static int count(DataStructure.Tree<Integer> root) {
         if (root == null) {
             return 0;
         }
@@ -26,16 +18,16 @@ public class BinaryTree {
         return 1 + count(root.left) + count(root.right);
     }
 
-    public static int countIterative(Tree<Integer> root) {
+    public static int countIterative(DataStructure.Tree<Integer> root) {
         if (root == null) {
             return 0;
         }
 
         int count = 0;
-        Queue<Tree<Integer>> queue = new LinkedList<>();
+        Queue<DataStructure.Tree<Integer>> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
-            Tree<Integer> node = queue.poll();
+            DataStructure.Tree<Integer> node = queue.poll();
             count ++;
             if (node.left != null) {
                 queue.add(node.left);
@@ -47,7 +39,7 @@ public class BinaryTree {
         return count;
     }
 
-    public static int height(Tree<Integer> root) {
+    public static int height(DataStructure.Tree<Integer> root) {
         if (root == null) {
             return 0;
         }
@@ -99,14 +91,14 @@ public class BinaryTree {
 //    }
 
     // preorder, can do without a stack (recursive)
-    public static Integer[] printPreorder(Tree<Integer> tr) {
+    public static Integer[] printPreorder(DataStructure.Tree<Integer> tr) {
         // assume tr not null
-        Stack<Tree<Integer>> st = new Stack<>();
+        Stack<DataStructure.Tree<Integer>> st = new Stack<>();
         ArrayList<Integer> al = new ArrayList<>();
 
         st.push(tr);
         while (!st.isEmpty()) {
-            Tree<Integer> top = st.pop();
+            DataStructure.Tree<Integer> top = st.pop();
 
             if (top != null) {
                 al.add(top.value);
@@ -119,14 +111,14 @@ public class BinaryTree {
         return al.toArray(new Integer[0]);
     }
 
-    public static Integer[] printBFS(Tree<Integer> tr) {
+    public static Integer[] printBFS(DataStructure.Tree<Integer> tr) {
         // assume tr not null
-        Queue<Tree<Integer>> q = new LinkedList<>();
+        Queue<DataStructure.Tree<Integer>> q = new LinkedList<>();
         ArrayList<Integer> al = new ArrayList<>();
         q.offer(tr);
 
         while (!q.isEmpty()) {
-            Tree<Integer> first = q.poll();
+            DataStructure.Tree<Integer> first = q.poll();
 
             if (first != null) {
                 al.add(first.value);
@@ -143,9 +135,9 @@ public class BinaryTree {
     // has placeholder for null nodes
     // BFS on binary tree
     // can reuse this pattern for level sum
-    public static String[] printBinaryTree(Tree<Integer> tree) {
+    public static String[] printBinaryTree(DataStructure.Tree<Integer> tree) {
         // use bfs to print the tree
-        Queue<Tree<Integer>> q = new LinkedList<>();
+        Queue<DataStructure.Tree<Integer>> q = new LinkedList<>();
         ArrayList<String> al = new ArrayList<>();
 
         q.offer(tree);
@@ -154,7 +146,7 @@ public class BinaryTree {
             boolean hasNonNullNode = false;
 
             for (int i = 0; i < levelSize; i++) {
-                Tree<Integer> node = q.poll();
+                DataStructure.Tree<Integer> node = q.poll();
 
                 if (node != null) {
                     al.add(node.value.toString());
