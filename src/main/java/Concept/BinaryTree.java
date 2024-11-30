@@ -5,9 +5,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+import static Concept.DataStructure.*;
+
 public class BinaryTree {
 
-    public static int count(DataStructure.Tree<Integer> root) {
+    public static int count(Tree<Integer> root) {
         if (root == null) {
             return 0;
         }
@@ -18,16 +20,16 @@ public class BinaryTree {
         return 1 + count(root.left) + count(root.right);
     }
 
-    public static int countIterative(DataStructure.Tree<Integer> root) {
+    public static int countIterative(Tree<Integer> root) {
         if (root == null) {
             return 0;
         }
 
         int count = 0;
-        Queue<DataStructure.Tree<Integer>> queue = new LinkedList<>();
+        Queue<Tree<Integer>> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
-            DataStructure.Tree<Integer> node = queue.poll();
+            Tree<Integer> node = queue.poll();
             count ++;
             if (node.left != null) {
                 queue.add(node.left);
@@ -39,7 +41,7 @@ public class BinaryTree {
         return count;
     }
 
-    public static int height(DataStructure.Tree<Integer> root) {
+    public static int height(Tree<Integer> root) {
         if (root == null) {
             return 0;
         }
