@@ -1,4 +1,4 @@
-package Concept;
+package Concept.Array;
 
 import java.util.List;
 
@@ -57,6 +57,8 @@ public class Array {
     public static void bubbleSort(int[] array) {
 
     }
+
+    // binary search
 
     // insertion sort
 

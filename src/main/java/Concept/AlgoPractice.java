@@ -58,7 +58,6 @@ public class AlgoPractice {
     }
 
     // print an arraylist
-    // print a linked list
     // print a stack
     // print a queue
 }

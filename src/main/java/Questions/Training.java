@@ -1,11 +1,11 @@
 package Questions;
 
-import javax.swing.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Training {
 
+    // Q1
     // Given a HashMap of connected cities get all city within a certain degree
     // - Do not return own city name
     // solution2(
@@ -62,5 +62,12 @@ public class Training {
     }
 
     // Given two people's names, return the distance between them in friend connections, their Kevin Bacon number?
+
+    // Q2
+    // Given an array of cake sizes and number of attendees, what is the largest piece of cake we can give each person.
+    // We want to give each person one whole piece of cake, not two that add up to the given size.
+    public static int largestCakeForEveryone(int[] cakes, int participants) {
+        return participants;
+    }
 
 }

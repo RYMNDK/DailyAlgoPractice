@@ -10,15 +10,4 @@ public class DataStructure {
         Tree<T> left;
         Tree<T> right;
     }
-
-    // linked list
-    public static final class ListNode<T> {
-        ListNode(T x) {
-            value = x;
-        }
-        T value;
-        ListNode<T> next;
-    }
-
-
 }
