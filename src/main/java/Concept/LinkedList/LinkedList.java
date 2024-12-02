@@ -12,6 +12,7 @@ class ListNode<T> {
         value = x;
         next = n;
     }
+
     T value;
     ListNode<T> next;
 
