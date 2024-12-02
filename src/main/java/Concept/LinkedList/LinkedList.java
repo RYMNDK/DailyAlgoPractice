@@ -31,7 +31,7 @@ public class LinkedList {
                 new ListNode<>(2,
                 new ListNode<>(3)));
 
-        printList(reverseWithoutArray(makeList(34567)));
+        printList(R2(makeList(34567)));
 
     }
 
@@ -61,7 +61,36 @@ public class LinkedList {
         return sentinel.next;
     }
 
-    // reverse linked with pointers, recursion
+    // reverse linked list with pointers
+    public static ListNode R1(ListNode head) {
+        ListNode prev = null;
+        ListNode current = head;
+        while (current != null) {
+            ListNode next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        return prev;
+    }
+
+    // reverse linked list with recursion
+    public static ListNode R2(ListNode head) {
+        if (head.next == null) {
+            return head;
+        } else {
+            ListNode reversed = R2(head.next);
+
+            System.out.println("head");
+            printList(head);
+            System.out.println("reversed");
+            printList(reversed);
+
+            head.next.next = head;
+            head.next = null;
+            return reversed;
+        }
+    }
 
     // reverse, no array allowed.
     // random access data structure not allowed (or you can just read array from back)
