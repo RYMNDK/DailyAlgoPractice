@@ -1,10 +1,6 @@
 package Concept.BinaryTree;
 
-import com.sun.source.tree.Tree;
-
 import java.util.*;
-
-import static Concept.DataStructure.*;
 
 // binary tree
 class TreeNode<T> {
@@ -26,70 +22,50 @@ class TreeNode<T> {
 public class BinaryTree {
 
     public static void main(String[] args) {
-        TreeNode tr = new TreeNode(1, new TreeNode(2, new TreeNode(3), new TreeNode(4)),  new TreeNode(5, new TreeNode(6), new TreeNode(7)));
-        printTree(tr);
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.left.right = new TreeNode(5);
+        root.right = new TreeNode(3);
 
+        for (String element: rtf(root)) {
+            System.out.println(element);
+        }
 
     }
 
     // root to leaf - easy backtracking question
     public static List<String> rtf(TreeNode root) {
-        Stack<TreeNode> st = new Stack();
-        String base = "";
         List<String> results = new ArrayList<>();
+        if (root == null) {
+            return results;
+        }
+
+        Stack<TreeNode> st = new Stack();
+        Stack<String> basePath = new Stack();
 
         st.push(root);
+        basePath.push("" + root.value);
+
         while (!st.isEmpty()) {
             TreeNode node = st.pop();
-            base += node.value;
+            String path = basePath.pop();
 
             if (node.left == null && node.right == null) {
-
+                results.add(path);
             } else {
                 if (node.right != null) {
                     st.push(node.right);
+                    basePath.push(path + "->" + node.right.value);
                 }
                 if (node.left != null) {
                     st.push(node.left);
+                    basePath.push(path + "->" + node.left.value);
                 }
             }
-
-            base += "->";
         }
 
         return results;
     }
-
-//    class Solution {
-//        public List<String> binaryTreePaths(TreeNode root) {
-//            LinkedList<String> paths = new LinkedList();
-//            if (root == null)
-//                return paths;
-//
-//            LinkedList<TreeNode> node_stack = new LinkedList();
-//            LinkedList<String> path_stack = new LinkedList();
-//            node_stack.add(root);
-//            path_stack.add(Integer.toString(root.val));
-//            TreeNode node;
-//            String path;
-//
-//            while ( !node_stack.isEmpty() ) {
-//                node = node_stack.pollLast();
-//                path = path_stack.pollLast();
-//                if ((node.left == null) && (node.right == null))
-//                    paths.add(path);
-//                if (node.left != null) {
-//                    node_stack.add(node.left);
-//                    path_stack.add(path + "->" + Integer.toString(node.left.val));
-//                }
-//                if (node.right != null) {
-//                    node_stack.add(node.right);
-//                    path_stack.add(path + "->" + Integer.toString(node.right.val));
-//                }
-//            }
-//            return paths;
-//        }
-//    }
 
     public static int countRecursive(TreeNode<Integer> root) {
         if (root == null) {
@@ -215,56 +191,7 @@ public class BinaryTree {
         return al.toArray(al.toArray(new Integer[0]));
     }
 
-    // print binary tree by level and seperated by a | operator
-    // has placeholder for null nodes
-    // BFS on binary tree
-    // can reuse this pattern for level sum
-    //    public static String[] printBinaryTree(Tree<Integer> tree) {
-    //        // check if your console can print ∅ and replace if required
-    //        System.out.println("======================== Printing Tree ========================");
-    //        // use bfs to print the tree
-    //        Queue<Tree<Integer>> q = new LinkedList<>();
-    //        ArrayList<String> al = new ArrayList<>();
-    //
-    //        q.offer(tree);
-    //        while (!q.isEmpty()) {
-    //            int levelSize = q.size();
-    //            boolean hasNonNullNode = false;
-    //
-    //            for (int i = 0; i < levelSize; i++) {
-    //                Tree<Integer> node = q.poll();
-    //
-    //                if (node != null) {
-    //                    al.add(node.value.toString());
-    //
-    //                    // Enqueue left and right children, even if they are null
-    //                    q.offer(node.left);
-    //                    q.offer(node.right);
-    //
-    //                    // Check if there's at least one non-null child
-    //                    if (node.left != null || node.right != null) {
-    //                        hasNonNullNode = true;
-    //                    }
-    //                } else {
-    //                    al.add("∅");
-    //                    // Enqueue null placeholders for left and right to keep tree structure
-    //                    q.offer(null);
-    //                    q.offer(null);
-    //                }
-    //            }
-    //
-    //            // If there are no non-null nodes at the next level, stop the traversal
-    //            if (!hasNonNullNode) {
-    //                break;
-    //            }
-    //
-    //            al.add("|");
-    //        }
-    //
-    //        return al.toArray(String[]::new);
-    //        System.out.println("======================== Printing Done ========================");
-    //    }
-
+    // binary level traversal (with bfs)
 
     // print binary tree in a visually friendly way
     public static void printTree(TreeNode<Integer> tree) {

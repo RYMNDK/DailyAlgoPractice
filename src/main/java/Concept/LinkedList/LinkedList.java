@@ -1,20 +1,21 @@
 package Concept.LinkedList;
 
+import java.util.List;
 import java.util.Stack;
 
 // linked list
 class ListNode<T> {
+    T value;
+    ListNode<T> next;
+
     ListNode(T x) {
-        this(x, null);
+        this.value = x;
     }
 
     ListNode(T x, ListNode<T> n) {
-        value = x;
+        this(x);
         next = n;
     }
-
-    T value;
-    ListNode<T> next;
 
 }
 
@@ -22,6 +23,42 @@ class ListNode<T> {
  * - Sentinel node: append a Sentinel node in front of head to help with list traversal
  *
  */
+
+//// implement linked list
+//class IListNode {
+//    Integer value;
+//    IListNode next;
+//
+//    IListNode(int x) {
+//        this.value = x;
+//    }
+//
+//    IListNode(int x, IListNode n) {
+//        this(x);
+//        next = n;
+//    }
+//
+//    public int get(int index) {
+//
+//    }
+//
+//    public void insertHead(int val) {
+//
+//    }
+//
+//    public void insertTail(int val) {
+//
+//    }
+//
+//    public boolean remove(int index) {
+//
+//    }
+//
+//    public List<Integer> getValues() {
+//
+//    }
+//
+//}
 
 public class LinkedList {
     public static void main(String[] args) {

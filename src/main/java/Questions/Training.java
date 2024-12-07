@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Training {
+    // other questions not added in the concept yet
 
     // Q1
     // Given a HashMap of connected cities get all city within a certain degree
