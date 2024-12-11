@@ -27,7 +27,7 @@ public class BinaryTree {
         root.left.right = new TreeNode(5);
         root.right = new TreeNode(3);
 
-        for (String element: rtf(root)) {
+        for (String element : rtf(root)) {
             System.out.println(element);
         }
 
@@ -67,11 +67,12 @@ public class BinaryTree {
         return results;
     }
 
+    // valid bst 2 - medium backtracking question
+
     public static int countRecursive(TreeNode<Integer> root) {
         if (root == null) {
             return 0;
-        }
-        else if (root.left == null && root.right == null) {
+        } else if (root.left == null && root.right == null) {
             return 1;
         }
 
@@ -88,7 +89,7 @@ public class BinaryTree {
         queue.add(root);
         while (!queue.isEmpty()) {
             TreeNode<Integer> node = queue.poll();
-            count ++;
+            count++;
             if (node.left != null) {
                 queue.add(node.left);
             }
@@ -171,8 +172,12 @@ public class BinaryTree {
         return al.toArray(new Integer[0]);
     }
 
+    // make array with bfs
     public static Integer[] printBFS(TreeNode<Integer> tr) {
-        // assume tr not null
+        if (tr == null) {
+            return new Integer[0];
+        }
+
         Queue<TreeNode<Integer>> q = new LinkedList<>();
         ArrayList<Integer> al = new ArrayList<>();
         q.offer(tr);
@@ -192,85 +197,87 @@ public class BinaryTree {
     }
 
     // binary level traversal (with bfs)
-
-    // print binary tree in a visually friendly way
-    public static void printTree(TreeNode<Integer> tree) {
-        System.out.println("======================== Printing Tree ========================");
-        if (tree == null) {
-            System.out.println("Tree is empty");
-            System.out.println("======================== Printing Done ========================");
+    // print tree with BFS, level traversal (no placeholder)
+    public static void printTreeBFS(TreeNode<Integer> root) {
+        System.out.println("Printing tree...");
+        if (root == null) {
+            System.out.println("Empty tree.");
             return;
         }
 
-        // Compute the maximum depth of the tree
-        int maxDepth = getMaxDepth(tree);
+        int levelCount = 1;
 
-        // Use BFS to print the tree
-        Queue<TreeNode<Integer>> q = new LinkedList<>();
-        q.offer(tree);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            for (int i = 0; i < levelCount; i++) {
+                TreeNode node = queue.poll();
+                System.out.print(node.value + " ");
 
-        int level = 0;
-        while (!q.isEmpty() && level < maxDepth) {
-            int levelSize = q.size();
-            // Calculate the number of spaces before the first node
-            int spaces = (int) Math.pow(2, maxDepth - level - 1) - 1;
-            // Calculate the number of spaces between nodes
-            int betweenSpaces = (int) Math.pow(2, maxDepth - level) - 1;
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
 
-            // Print leading spaces
-            printSpaces(spaces);
+            }
 
-            List<TreeNode<Integer>> nextLevelNodes = new ArrayList<>();
+            System.out.println();
+            levelCount *= 2;
+        }
+        System.out.println("Printing done.");
+    }
+
+    // print bfs with null placeholders
+    public static void printLevelOrderWithNulls(TreeNode<Integer> root) {
+        if (root == null) {
+            return;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        // The idea is to complete each level fully,
+        // meaning if we know the level size at the start,
+        // we process exactly that many nodes, printing them
+        // and enqueueing their children (even if null).
+
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            StringBuilder sb = new StringBuilder();
 
             for (int i = 0; i < levelSize; i++) {
-                TreeNode<Integer> node = q.poll();
-
-                // Print node value or ∅ for null
-                if (node != null) {
-                    System.out.print(node.value);
-                    nextLevelNodes.add(node.left);
-                    nextLevelNodes.add(node.right);
+                TreeNode current = queue.poll();
+                if (current == null) {
+                    sb.append("∅ ");
+                    // Even if we encounter null, to keep structure,
+                    // we still add children as null to queue to maintain spacing.
+                    queue.offer(null);
+                    queue.offer(null);
                 } else {
-                    System.out.print("∅");
-                    nextLevelNodes.add(null);
-                    nextLevelNodes.add(null);
-                }
-
-                // Print spaces between nodes
-                if (i < levelSize - 1) {
-                    printSpaces(betweenSpaces);
+                    sb.append(current.value).append(" ");
+                    queue.offer(current.left);
+                    queue.offer(current.right);
                 }
             }
-            System.out.println();
 
-            // Enqueue nodes for the next level
-            for (TreeNode<Integer> nextNode : nextLevelNodes) {
-                q.offer(nextNode);
+            // Trim trailing space and print the level
+            System.out.println(sb.toString().trim());
+
+            // Check if next level is all nulls; if yes, we can stop
+            // Because once you've hit the bottom (or missing children)
+            // the following levels will just be null "values".
+            boolean allNull = true;
+            for (TreeNode node : queue) {
+                if (node != null) {
+                    allNull = false;
+                    break;
+                }
             }
-
-            level++;
-        }
-
-        System.out.println("======================== Printing Done ========================");
-    }
-
-    private static void printSpaces(int count) {
-        for (int i = 0; i < count; i++) {
-            System.out.print("  ");
+            if (allNull) break;
         }
     }
 
-    private static int getMaxDepth(TreeNode<Integer> node) {
-        if (node == null) {
-            return 0;
-        } else {
-            int leftDepth = getMaxDepth(node.left);
-            int rightDepth = getMaxDepth(node.right);
-            return Math.max(leftDepth, rightDepth) + 1;
-        }
-    }
-
+    // array to bst
 }
-
-
-
