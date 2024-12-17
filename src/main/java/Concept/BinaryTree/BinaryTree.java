@@ -24,25 +24,48 @@ class TreeNode<T> {
 public class BinaryTree {
 
     public static void main(String[] args) {
+        TreeNode<Integer> bst = new TreeNode<Integer>(5);
+        insertBST(bst, new TreeNode<Integer>(2));
+        insertBST(bst, new TreeNode<Integer>(7));
+        insertBST(bst, new TreeNode<Integer>(1));
+        insertBST(bst, new TreeNode<Integer>(3));
+        insertBST(bst, new TreeNode<Integer>(4));
+        insertBST(bst, new TreeNode<Integer>(6));
+        insertBST(bst, new TreeNode<Integer>(8));
+
+        printLevelOrderWithNulls(bst);
+
+        int[] result = binaryTreeFC(bst, 6.5);
+        System.out.println(Arrays.toString(result));
+    }
+
+    // validate BST
 
 
-        TreeNode<Integer> node7 = new TreeNode<>(7);
-        TreeNode<Integer> node5 = new TreeNode<>(5, node7, null);
-        TreeNode<Integer> node4 = new TreeNode<>(4);
-        TreeNode<Integer> node2 = new TreeNode<>(2, node4, node5);
-        TreeNode<Integer> node6 = new TreeNode<>(6);
-        TreeNode<Integer> node3 = new TreeNode<>(3, null, node6);
-        TreeNode<Integer> root = new TreeNode<>(1, node2, node3);
+    // floor and ceil of binary tree
+    public static int[] binaryTreeFC(TreeNode<Integer> root, double target) {
+        int[] result = new int[2];
+        result[0] = Integer.MIN_VALUE;
+        result[1] = Integer.MAX_VALUE;
+        binaryTreeFCHelper(root, target, result);
+        return result;
+    }
 
-        // long startTime = System.nanoTime();
-
-        TreeNode deepest = deepestNodeQueue(root);
-
-        // long endTime = System.nanoTime();
-
-        System.out.println("Deepest Node Value: " + (deepest != null ? deepest.value : "null"));
-
-
+    public static void binaryTreeFCHelper(TreeNode<Integer> root, double target, int[] FC) {
+        if (root != null) {
+            System.out.println("cur_value: " + root.value + " target: " + target);
+            if (root.value == target) {
+                FC[0] = root.value;
+                FC[1] = root.value;
+            }
+            else if (root.value < target) {
+                FC[0] = root.value;
+                binaryTreeFCHelper(root.right, target, FC);
+            } else {
+                FC[1] = root.value;
+                binaryTreeFCHelper(root.left, target, FC);
+            }
+        }
     }
 
     // deepest node (dfs)
@@ -114,12 +137,12 @@ public class BinaryTree {
         return null;
     }
 
-    // 116. Populating Next Right Pointers in Each Node
+    // todo:  116. Populating Next Right Pointers in Each Node
     // this one uses a unique binary tree structure i will print it instead
 
-    // 623. Add One Row to Tree
+    // todo:  623. Add One Row to Tree
 
-    // take a sorted list convert it to balanced bst (target code time about 3-5 min)
+    // todo: take a sorted list convert it to balanced bst (target code time about 3-5 min)
 
     // Root to leaf - easy backtracking question
     public static List<String> rootToLeaf(TreeNode root) {
@@ -256,9 +279,9 @@ public class BinaryTree {
         return Math.max(height(root.left), height(root.right)) + 1;
     }
 
-    // postorder, can do without a stack (left right node)
+    // todo: postorder, can do without a stack (left right node)
 
-    // inorder, can do without a stack (left node right)
+    // todo: inorder, can do without a stack (left node right)
 
     // preorder, can do without a stack (node left right)
     public static Integer[] printPreorder(TreeNode<Integer> tr) {
@@ -314,13 +337,12 @@ public class BinaryTree {
             return;
         }
 
-        int levelCount = 1;
-
-        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode<Integer>> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
-            for (int i = 0; i < levelCount; i++) {
-                TreeNode node = queue.poll();
+            int levelSize = queue.size();
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode<Integer> node = queue.poll();
                 System.out.print(node.value + " ");
 
                 if (node.left != null) {
@@ -333,7 +355,6 @@ public class BinaryTree {
             }
 
             System.out.println();
-            levelCount *= 2;
         }
         System.out.println("Printing done.");
     }
@@ -388,5 +409,4 @@ public class BinaryTree {
         }
     }
 
-    // sorted array to bst
 }
