@@ -1,6 +1,4 @@
-package Concept.BinaryTree;
-
-import com.sun.source.tree.Tree;
+package Concept.LinkedList.BinaryTree;
 
 import java.util.*;
 

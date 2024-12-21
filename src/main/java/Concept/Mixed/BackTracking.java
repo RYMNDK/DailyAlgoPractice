@@ -1,7 +1,6 @@
-package Concept.Advanced;
+package Concept.Mixed;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class BackTracking {
 
@@ -49,7 +48,7 @@ public class BackTracking {
         if (curIndex == keypress.length) {
             allResults.add(new ArrayList<>(curWords));
         } else {
-
+            // todo: finish this
         }
     }
 
