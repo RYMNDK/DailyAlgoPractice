@@ -1,23 +1,8 @@
-package Concept.LinkedList.BinaryTree;
+package Concept.Link;
+
+import DS.TreeNode;
 
 import java.util.*;
-
-// binary tree
-class TreeNode<T> {
-    TreeNode(T x) {
-        value = x;
-    }
-
-    TreeNode(T x, TreeNode<T> l, TreeNode<T> r) {
-        this(x);
-        this.left = l;
-        this.right = r;
-    }
-
-    T value;
-    TreeNode<T> left;
-    TreeNode<T> right;
-}
 
 public class BinaryTree {
 
@@ -113,7 +98,7 @@ public class BinaryTree {
         if (root == null) {
             return null;
         }
-        Queue<TreeNode<Integer>> nextLevel = new LinkedList<>();
+        Queue<TreeNode<Integer>> nextLevel = new java.util.LinkedList<>();
         nextLevel.offer(root);
         while (!nextLevel.isEmpty()) {
             int levelSize = nextLevel.size();

@@ -1,4 +1,4 @@
-package Concept.Mixed;
+package Concept.Other;
 
 import java.util.*;
 
