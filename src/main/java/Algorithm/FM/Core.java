@@ -1,4 +1,4 @@
-package FM;
+package Algorithm.FM;
 
 public class Core {
 }

@@ -1,4 +1,4 @@
-package Concept.Other;
+package Algorithm.Concept.Other;
 
 import java.util.HashMap;
 import java.util.Map;

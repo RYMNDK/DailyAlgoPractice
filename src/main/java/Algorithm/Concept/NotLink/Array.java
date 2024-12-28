@@ -1,4 +1,4 @@
-package Concept.NotLink;
+package Algorithm.Concept.NotLink;
 
 import java.util.List;
 

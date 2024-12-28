@@ -1,4 +1,4 @@
-package DS;
+package Algorithm.DS;
 
 // binary tree
 public class TreeNode<T> {

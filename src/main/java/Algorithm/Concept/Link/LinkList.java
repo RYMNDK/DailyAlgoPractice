@@ -1,8 +1,6 @@
-package Concept.Link;
+package Algorithm.Concept.Link;
 
-import DS.ListNode;
-
-import java.util.Stack;
+import Algorithm.DS.ListNode;
 
 /* Techniques
  * - Sentinel node: append a Sentinel node in front of head to help with list traversal

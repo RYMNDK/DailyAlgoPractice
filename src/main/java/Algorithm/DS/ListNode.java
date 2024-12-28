@@ -1,4 +1,4 @@
-package DS;
+package Algorithm.DS;
 
 // linked list
 public class ListNode<T> {

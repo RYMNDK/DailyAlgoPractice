@@ -1,3 +1,5 @@
+package Algorithm;
+
 public class AlgoPractice {
 
     // useful things because i dont wanna write python/javascript

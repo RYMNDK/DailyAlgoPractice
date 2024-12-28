@@ -1,6 +1,6 @@
-package Concept.Link;
+package Algorithm.Concept.Link;
 
-import DS.TreeNode;
+import Algorithm.DS.TreeNode;
 
 import java.util.*;
 
