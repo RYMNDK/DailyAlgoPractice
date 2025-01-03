@@ -2,7 +2,7 @@ package Algorithm.Concept.NotLink;
 
 import java.util.List;
 
-public class Array {
+public class Arrays {
 
     // no direct conversion from List<Integer> to int[]
     public int[] arrayListToStaticPrimitiveArray(List<Integer> result) {

@@ -7,7 +7,7 @@ import Algorithm.DS.ListNode;
  *
  */
 
-public class LinkList {
+public class LinkLists {
     public static void main(String[] args) {
         ListNode<Integer> n1 = new ListNode<>(1);
 
