@@ -1,9 +1,6 @@
 package Algorithm;
 
-import java.util.LinkedList;
-import java.util.Objects;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 public class AlgoPractice {
 
@@ -29,12 +26,12 @@ public class AlgoPractice {
 //        }
 //
 //        print1DArray(flatten(array));
-        Queue<Objects> queue = new PriorityQueue<>();
-        queue.add(null);
+        Map<Integer,Integer> map = new HashMap<>();
+        Map<Integer,Integer> map2 = new TreeMap<>();
+        Map<Integer,Integer> map3 = new WeakHashMap<>();
+        Map<Integer,Integer> map4 = new IdentityHashMap<>();
+        Map<Integer,Integer> map5 = new LinkedHashMap<>();
 
-        queue.offer(null);
-
-        System.out.println(queue.size());
     }
 
 //    // print entire 2d array

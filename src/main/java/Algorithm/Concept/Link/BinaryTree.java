@@ -12,18 +12,25 @@ public class BinaryTree {
         insertBST(bst, new TreeNode<Integer>(7));
         insertBST(bst, new TreeNode<Integer>(1));
         insertBST(bst, new TreeNode<Integer>(3));
-        insertBST(bst, new TreeNode<Integer>(4));
         insertBST(bst, new TreeNode<Integer>(6));
         insertBST(bst, new TreeNode<Integer>(8));
 
         printLevelOrderWithNulls(bst);
 
-        int[] result = binaryTreeFC(bst, 6.5);
-        System.out.println(Arrays.toString(result));
+
     }
 
-    // validate BST
+    // todo: LCA BST #235
+    public TreeNode LCABST(TreeNode root, TreeNode p, TreeNode q) {
+        return null;
+    }
 
+    // LCA Binary tree lowest common ancestor #236
+    public TreeNode LCABT(TreeNode<Integer> root, TreeNode<Integer> p, TreeNode<Integer>  q) {
+
+    }
+
+    // todo: validate BST
 
     // floor and ceil of binary tree
     public static int[] binaryTreeFC(TreeNode<Integer> root, double target) {
