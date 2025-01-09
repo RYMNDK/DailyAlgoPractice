@@ -7,33 +7,29 @@ import java.util.*;
 public class BinaryTree {
 
     public static void main(String[] args) {
-        TreeNode<Integer> bst = new TreeNode<Integer>(5);
-        insertBST(bst, new TreeNode<Integer>(2));
-        insertBST(bst, new TreeNode<Integer>(7));
-        insertBST(bst, new TreeNode<Integer>(1));
-        insertBST(bst, new TreeNode<Integer>(3));
-        insertBST(bst, new TreeNode<Integer>(6));
-        insertBST(bst, new TreeNode<Integer>(8));
+        TreeNode bst = new TreeNode(5);
+        insertBST(bst, new TreeNode(2));
+        insertBST(bst, new TreeNode(7));
+        insertBST(bst, new TreeNode(1));
+        insertBST(bst, new TreeNode(3));
+        insertBST(bst, new TreeNode(6));
+        insertBST(bst, new TreeNode(8));
 
         printLevelOrderWithNulls(bst);
 
 
     }
 
-    // todo: LCA BST #235
-    public TreeNode LCABST(TreeNode root, TreeNode p, TreeNode q) {
-        return null;
+    public static void printInOrderIterative(TreeNode root) {
+        Stack<TreeNode> st = new Stack<>();
+        st.push(root);
+        while  (!st.isEmpty() ) {
+
+        }
     }
-
-    // LCA Binary tree lowest common ancestor #236
-    public TreeNode LCABT(TreeNode<Integer> root, TreeNode<Integer> p, TreeNode<Integer>  q) {
-
-    }
-
-    // todo: validate BST
 
     // floor and ceil of binary tree
-    public static int[] binaryTreeFC(TreeNode<Integer> root, double target) {
+    public static int[] binaryTreeFC(TreeNode root, double target) {
         int[] result = new int[2];
         result[0] = Integer.MIN_VALUE;
         result[1] = Integer.MAX_VALUE;
@@ -41,7 +37,7 @@ public class BinaryTree {
         return result;
     }
 
-    public static void binaryTreeFCHelper(TreeNode<Integer> root, double target, int[] FC) {
+    public static void binaryTreeFCHelper(TreeNode root, double target, int[] FC) {
         if (root != null) {
             System.out.println("cur_value: " + root.value + " target: " + target);
             if (root.value == target) {
@@ -59,22 +55,22 @@ public class BinaryTree {
     }
 
     // deepest node (dfs)
-    public static TreeNode deepestNode(TreeNode<Integer> root) {
+    public static TreeNode deepestNode(TreeNode root) {
         if (root == null) {
             return null;
         }
-        List<TreeNode<Integer>> results = new ArrayList<>();
+        List<TreeNode> results = new ArrayList<>();
         deepestNodeHelper(root, results);
         return results.getFirst();
     }
 
-    private static int deepestNodeHelper(TreeNode<Integer> root, List<TreeNode<Integer>> result) {
+    private static int deepestNodeHelper(TreeNode root, List<TreeNode> result) {
         if (root == null) {
             result.clear();
             return 0;
         }
-        List<TreeNode<Integer>> leftDeepestNodes = new ArrayList<>();
-        List<TreeNode<Integer>> rightDeepestNodes = new ArrayList<>();
+        List<TreeNode> leftDeepestNodes = new ArrayList<>();
+        List<TreeNode> rightDeepestNodes = new ArrayList<>();
 
         int leftMaxHeight = deepestNodeHelper(root.left, leftDeepestNodes);
         int rightMaxHeight = deepestNodeHelper(root.right, rightDeepestNodes);
@@ -101,16 +97,16 @@ public class BinaryTree {
     }
 
     // deepest node (bfs)
-    public static TreeNode deepestNodeQueue(TreeNode<Integer> root) {
+    public static TreeNode deepestNodeQueue(TreeNode root) {
         if (root == null) {
             return null;
         }
-        Queue<TreeNode<Integer>> nextLevel = new java.util.LinkedList<>();
+        Queue<TreeNode> nextLevel = new java.util.LinkedList<>();
         nextLevel.offer(root);
         while (!nextLevel.isEmpty()) {
             int levelSize = nextLevel.size();
             for (int i = 0; i < levelSize; i++) {
-                TreeNode<Integer> node = nextLevel.poll();
+                TreeNode node = nextLevel.poll();
                 if (node.left != null) {
                     nextLevel.offer(node.left);
                 }
@@ -126,13 +122,6 @@ public class BinaryTree {
         // will not be reached
         return null;
     }
-
-    // todo:  116. Populating Next Right Pointers in Each Node
-    // this one uses a unique binary tree structure i will print it instead
-
-    // todo:  623. Add One Row to Tree
-
-    // todo: take a sorted list convert it to balanced bst (target code time about 3-5 min)
 
     // Root to leaf - easy backtracking question
     public static List<String> rootToLeaf(TreeNode root) {
@@ -169,31 +158,31 @@ public class BinaryTree {
     }
 
     // Unique BST2 - medium backtracking, return all trees
-    public static List<TreeNode<Integer>> UniqueBST2(int nums) {
-        //List<TreeNode<Integer>> allResults = new ArrayList<>();
+    public static List<TreeNode> UniqueBST2(int nums) {
+        //List<TreeNode> allResults = new ArrayList<>();
         if (nums == 0) return new ArrayList<>();
         return uBST2bt(1, nums, new HashMap<>());
     }
 
-    private static List<TreeNode<Integer>> uBST2bt(int from, int to, HashMap<String, List<TreeNode<Integer>>> memo) {
+    private static List<TreeNode> uBST2bt(int from, int to, HashMap<String, List<TreeNode>> memo) {
         // check memo
         String key = from+"->"+to;
         if (memo.containsKey(key)) {
             return memo.get(key);
         }
-        List<TreeNode<Integer>> allLocalResults = new ArrayList<>();
+        List<TreeNode> allLocalResults = new ArrayList<>();
         // to is never equal to from
         if (to < from) {
             allLocalResults.add(null);
             return allLocalResults;
         } else {
             for (int i = from; i <= to; i++) {
-                List<TreeNode<Integer>> localLeft = uBST2bt(from, i - 1, memo);
-                List<TreeNode<Integer>> localRight = uBST2bt(i + 1, to, memo);
+                List<TreeNode> localLeft = uBST2bt(from, i - 1, memo);
+                List<TreeNode> localRight = uBST2bt(i + 1, to, memo);
                 // get all combination of left and right and attach the current node on top
-                for (TreeNode<Integer> left : localLeft) {
-                    for (TreeNode<Integer> right : localRight) {
-                        TreeNode<Integer> root = new TreeNode<>(i);
+                for (TreeNode left : localLeft) {
+                    for (TreeNode right : localRight) {
+                        TreeNode root = new TreeNode(i);
                         root.left = left;
                         root.right = right;
                         allLocalResults.add(root);
@@ -206,18 +195,19 @@ public class BinaryTree {
         return allLocalResults;
     }
 
-    private static TreeNode<Integer> deepCopy(TreeNode<Integer> root) {
+    // deep copy binary tree
+    private static TreeNode deepCopy(TreeNode root) {
         if (root == null) {
             return null;
         }
-        TreeNode<Integer> curNode = new TreeNode<>(root.value);
+        TreeNode curNode = new TreeNode(root.value);
         curNode.left = deepCopy(root.left);
         curNode.right = deepCopy(root.right);
         return curNode;
     }
 
     // values are unique (no equals)
-    private static TreeNode<Integer> insertBST(TreeNode<Integer> root, TreeNode<Integer> node) {
+    private static TreeNode insertBST(TreeNode root, TreeNode node) {
         if (root == null) {
             return node;
         }
@@ -230,7 +220,7 @@ public class BinaryTree {
         return root;
     }
 
-    public static int countRecursive(TreeNode<Integer> root) {
+    public static int countRecursive(TreeNode root) {
         if (root == null) {
             return 0;
         } else if (root.left == null && root.right == null) {
@@ -240,16 +230,16 @@ public class BinaryTree {
         return 1 + countRecursive(root.left) + countRecursive(root.right);
     }
 
-    public static int countIterative(TreeNode<Integer> root) {
+    public static int countIterative(TreeNode root) {
         if (root == null) {
             return 0;
         }
 
         int count = 0;
-        Queue<TreeNode<Integer>> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
-            TreeNode<Integer> node = queue.poll();
+            TreeNode node = queue.poll();
             count++;
             if (node.left != null) {
                 queue.add(node.left);
@@ -261,7 +251,7 @@ public class BinaryTree {
         return count;
     }
 
-    public static int height(TreeNode<Integer> root) {
+    public static int height(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -269,19 +259,15 @@ public class BinaryTree {
         return Math.max(height(root.left), height(root.right)) + 1;
     }
 
-    // todo: postorder, can do without a stack (left right node)
-
-    // todo: inorder, can do without a stack (left node right)
-
     // preorder, can do without a stack (node left right)
-    public static Integer[] printPreorder(TreeNode<Integer> tr) {
+    public static Integer[] printPreorder(TreeNode tr) {
         // assume tr not null
-        Stack<TreeNode<Integer>> st = new Stack<>();
+        Stack<TreeNode> st = new Stack<>();
         ArrayList<Integer> al = new ArrayList<>();
 
         st.push(tr);
         while (!st.isEmpty()) {
-            TreeNode<Integer> top = st.pop();
+            TreeNode top = st.pop();
 
             if (top != null) {
                 al.add(top.value);
@@ -295,17 +281,17 @@ public class BinaryTree {
     }
 
     // make array with bfs
-    public static Integer[] printBFS(TreeNode<Integer> tr) {
+    public static Integer[] printBFS(TreeNode tr) {
         if (tr == null) {
             return new Integer[0];
         }
 
-        Queue<TreeNode<Integer>> q = new LinkedList<>();
+        Queue<TreeNode> q = new LinkedList<>();
         ArrayList<Integer> al = new ArrayList<>();
         q.offer(tr);
 
         while (!q.isEmpty()) {
-            TreeNode<Integer> first = q.poll();
+            TreeNode first = q.poll();
 
             if (first != null) {
                 al.add(first.value);
@@ -320,19 +306,19 @@ public class BinaryTree {
 
     // binary level traversal (with bfs)
     // print tree with BFS, level traversal (no placeholder)
-    public static void printTreeBFS(TreeNode<Integer> root) {
+    public static void printTreeBFS(TreeNode root) {
         System.out.println("Printing tree...");
         if (root == null) {
             System.out.println("Empty tree.");
             return;
         }
 
-        Queue<TreeNode<Integer>> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
             int levelSize = queue.size();
             for (int i = 0; i < levelSize; i++) {
-                TreeNode<Integer> node = queue.poll();
+                TreeNode node = queue.poll();
                 System.out.print(node.value + " ");
 
                 if (node.left != null) {
@@ -350,7 +336,7 @@ public class BinaryTree {
     }
 
     // print bfs with null placeholders
-    public static void printLevelOrderWithNulls(TreeNode<Integer> root) {
+    public static void printLevelOrderWithNulls(TreeNode root) {
         if (root == null) {
             return;
         }

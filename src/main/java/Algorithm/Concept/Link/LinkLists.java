@@ -77,34 +77,6 @@ public class LinkLists {
 //        }
 //    }
 //
-//    // reverse, no array allowed.
-//    // random access data structure not allowed (or you can just read array from back)
-//    public static ListNode reverseWithoutArray(ListNode head){
-//        Stack<ListNode> st = new Stack<>();
-//        ListNode sentinel = new ListNode(-1);
-//        ListNode pointer = head;
-//        while (pointer != null) {
-//            st.push(pointer);
-//            pointer = pointer.next;
-//        }
-//        pointer = sentinel;
-//        while (!st.isEmpty()) {
-//            pointer.next = st.pop();
-//            pointer = pointer.next;
-//
-//        }
-//        pointer.next = null;
-//        return sentinel.next;
-//    }
 }
 
-
-// todo:
-// recent access list
-// use chunks if larger more data size
-// LRU
-
-// reverse a linked list Recursive, iterative and iterative with extra space
-
-// merge 2 sorted linked list
 

@@ -1,18 +1,18 @@
 package Algorithm.DS;
 
 // binary tree
-public class TreeNode<T> {
-    public TreeNode(T x) {
+public class TreeNode {
+    public TreeNode(int x) {
         value = x;
     }
 
-    public TreeNode(T x, TreeNode<T> l, TreeNode<T> r) {
+    public TreeNode(int x, TreeNode l, TreeNode r) {
         this(x);
         this.left = l;
         this.right = r;
     }
 
-    public T value;
-    public TreeNode<T> left;
-    public TreeNode<T> right;
+    public int value;
+    public TreeNode left;
+    public TreeNode right;
 }

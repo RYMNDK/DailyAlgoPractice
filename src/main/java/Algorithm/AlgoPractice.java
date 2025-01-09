@@ -26,11 +26,6 @@ public class AlgoPractice {
 //        }
 //
 //        print1DArray(flatten(array));
-        Map<Integer,Integer> map = new HashMap<>();
-        Map<Integer,Integer> map2 = new TreeMap<>();
-        Map<Integer,Integer> map3 = new WeakHashMap<>();
-        Map<Integer,Integer> map4 = new IdentityHashMap<>();
-        Map<Integer,Integer> map5 = new LinkedHashMap<>();
 
     }
 
