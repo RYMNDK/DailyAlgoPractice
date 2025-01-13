@@ -17,13 +17,25 @@ public class BinaryTree {
 
         printLevelOrderWithNulls(bst);
 
+        printInOrderIterative(bst);
+
+        System.out.println("done");
 
     }
 
+    // dfs, fully explore left, print self then move right once, repeat
     public static void printInOrderIterative(TreeNode root) {
         Stack<TreeNode> st = new Stack<>();
-        st.push(root);
-        while  (!st.isEmpty() ) {
+        TreeNode curNode = root;
+        while  (curNode != null || !st.isEmpty() ) {
+            while (curNode != null ) {
+                st.push(curNode);
+                curNode = curNode.left;
+            }
+
+            curNode = st.pop();
+            System.out.println(curNode.value);
+            curNode = curNode.right;
 
         }
     }
