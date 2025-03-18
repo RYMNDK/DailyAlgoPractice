@@ -6,7 +6,7 @@ A repo for just all the console java console stuff I am currently working on
 
 ## Algorithm 
 - Algorithm practice, include leetcode 75 and other things
-- Additional works can be found [here](https://github.com/RYMNDK/coding-interview-patterns/tree/Java-active)
+- Additional works can be found [here]([https://github.com/RYMNDK/coding-interview-patterns/tree/Java-active](https://github.com/RYMNDK/coding-interview-patterns-local-practice))
 
 ## Chess Validation
 - Implementing a chess validation module for React-Chess backend
